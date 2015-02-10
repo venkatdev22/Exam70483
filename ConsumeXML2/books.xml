@@ -1,0 +1,39 @@
+<?xml version=" 1.0" encoding=" utf-8"?>
+<books>
+  <book category=" Fiction" >
+     <author>Jack Kerouac</author>
+     <title>On the Road</title>
+     <price>11.99</price>
+ </book>
+
+
+  <book category=" IT" >
+     <author>Stephen Walther</author>
+     <title>ASP.NET Unleashed</title>
+     <price>34.99</price>
+ </book>
+
+  <book category=" Music" >
+     <author>Michael Miller</author>
+     <title>Idiots Guide to Music Theory</title>
+     <price>17.99</price>
+ </book>
+ 
+   <book category="IT" >
+     <author>Wrox</author>
+     <title>Learning SQL</title>
+     <price>15.99</price>
+ </book>
+ 
+   <book category="Non Fiction" >
+     <author>Herman Hess</author>
+     <title>Sidartha</title>
+     <price>9.99</price>
+ </book>
+ 
+   <book category="Fiction" >
+     <author>Jules Verne</author>
+     <title>Journey to the Center of the Earth</title>
+     <price>29.99</price>
+ </book>
+</books>

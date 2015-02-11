@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Extention;
+using CustomLinqExtention;
 namespace Features
 {
     public class Person
@@ -337,6 +338,26 @@ namespace Features
 
             #endregion
 
+            #region Where
+            Console.WriteLine("***Where clause***");
+            int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            var bigEvenNosQuery = from nos in numbers
+                             where nos < 5 && nos % 2 == 0
+                             select nos;
+
+            var bigEvenNosQuery2 = from nos in numbers
+                                   where nos < 5
+                                   where nos % 2 == 0
+                                   select nos;
+            Console.WriteLine("Query 1");
+            bigEvenNosQuery.ToList().ForEach(x => Console.WriteLine(x));
+            Console.WriteLine("Query 2");
+            bigEvenNosQuery2.ToList().ForEach(x => Console.WriteLine(x));
+
+            Console.WriteLine("Custom Where Result");
+            IEnumerable<int> customResult = numbers.CustomWhere(x => x > 8);
+            Console.WriteLine(string.Join(" ",customResult));
+            #endregion
         }
     }
     /// <summary>
@@ -350,6 +371,23 @@ namespace Features
 }
 
 
+namespace CustomLinqExtention
+{
+    ///LISTING 4-63  Implementing Where
+    public static class LinqExtenion
+    {
+        public static IEnumerable<TSouce> CustomWhere<TSouce>(this IEnumerable<TSouce> source, Func<TSouce, bool> predicate)
+        {
+            foreach (TSouce item in source)
+            {
+                if (predicate(item))
+                {
+                    yield return item;
+                }
+            }
+        }
+    }
+}
 ///Extension Class
 namespace Extention
 {

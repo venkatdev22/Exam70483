@@ -13,7 +13,7 @@ namespace Binaryserialize
         public int Id { get; set; }
         public string Name { get; set; }
         [NonSerialized]
-        private bool isDirty = false;
+        public bool isDirty = true;   //Due to NonSerialized attribute, console will show FALSE as defalut value. In case of int, its will show 0
 
         [System.Runtime.Serialization.OnSerializing()]
         internal void onSerialization(System.Runtime.Serialization.StreamingContext sContext)
@@ -62,7 +62,7 @@ namespace Binaryserialize
                         Person dePerson = (Person)binaryFormatter.Deserialize(meomryStream);
                         meomryStream.Close();
 
-                        Console.WriteLine("Name:{0}\nId:{1}",dePerson.Name,dePerson.Id);    
+                        Console.WriteLine("Name:{0}\nId:{1}", dePerson.Name, dePerson.isDirty);    
                 }
                 ///Object -> File
                 //using (var stream = new System.IO.FileStream("Person.bin", System.IO.FileMode.OpenOrCreate))

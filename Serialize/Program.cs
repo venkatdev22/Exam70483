@@ -113,7 +113,8 @@ namespace Xmlserialize
 
 
                 ///Object -> File
-                using (var streamWritter = new System.IO.StreamWriter(System.IO.Directory.GetCurrentDirectory()+"\\App_Data\\Doc.xml"))
+                var parentpath = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName).FullName;
+                using (var streamWritter = new System.IO.StreamWriter(parentpath + "\\App_Data\\Doc.xml"))
                 {
                     xmlSerializer.Serialize(streamWritter, order);
                 }

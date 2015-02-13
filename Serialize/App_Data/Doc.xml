@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Person xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <FirstName>Rahul</FirstName>
-  <LastName>Dravid</LastName>
-  <Age>41</Age>
-  <ODI>
-    <NumberOfMatches>317</NumberOfMatches>
-    <Type>ODI</Type>
-    <Avg>40.1</Avg>
-  </ODI>
-</Person>
+<Order xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="VIPOrder" Id="4">
+  <Lines>
+    <OrderLine Id="5" Amount="1">
+      <OrderedProdcut Id="1">
+        <Price>9</Price>
+        <Desc>p2</Desc>
+      </OrderedProdcut>
+    </OrderLine>
+    <OrderLine Id="6" Amount="10">
+      <OrderedProdcut Id="2">
+        <Price>6</Price>
+        <Desc>p3</Desc>
+      </OrderedProdcut>
+    </OrderLine>
+  </Lines>
+  <Desc>Order for John Doe. Use the nice giftwrap</Desc>
+</Order>

@@ -14,7 +14,6 @@ namespace Binaryserialize
         public string LastName { get; set; }
         public int Age { get; set; }
         public Match ODI { get; set; }
-        [System.NonSerialized] 
         public Match TEST { get; set; }
     }
 

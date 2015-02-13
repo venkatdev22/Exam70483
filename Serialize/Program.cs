@@ -50,6 +50,15 @@ namespace Xmlserialize
         public string Desc { get; set; }
     }
 
+    [System.Serializable]
+    public class OrderedItem
+    {
+        public string ItemName;
+        public string Description;
+        public decimal UnitPrice;
+        public int Quantity;
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -103,6 +112,8 @@ namespace Xmlserialize
                 System.Xml.Serialization.XmlSerializer xmlSerializer = new System.Xml.Serialization.XmlSerializer(typeof(Order),
                                                                             new Type[]{ typeof(VIPOrder) });
 
+                System.Xml.Serialization.XmlSerializer xmlSerializer2 = new System.Xml.Serialization.XmlSerializer(typeof(OrderedItem), "http://www.cpandl.com");
+
                 ///Object -> Memory
                 using (var stringWritter = new System.IO.StringWriter())
                 {
@@ -110,6 +121,16 @@ namespace Xmlserialize
                     objectAsString = stringWritter.ToString();
                 }
                 Console.Write(objectAsString);
+
+                OrderedItem orderedItem = new OrderedItem() { Description = "Desc for type&string", ItemName = "type&string" };
+                using (var stringWritter = new System.IO.StringWriter())
+                {
+                    xmlSerializer2.Serialize(stringWritter, orderedItem);
+                    objectAsString = stringWritter.ToString();
+                }
+                Console.Write(objectAsString);
+
+
 
 
                 ///Object -> File
@@ -130,13 +151,17 @@ namespace Xmlserialize
         {
             ///deserialize
             ///Memory -> Object
-            
-                System.Xml.Serialization.XmlSerializer xmlSerializer = new System.Xml.Serialization.XmlSerializer(typeof(Person));
+
+            try
+            {
+                System.Xml.Serialization.XmlSerializer xmlSerializer = new System.Xml.Serialization.XmlSerializer(typeof(Order), new Type[]{typeof(VIPOrder)});
                 using (var stringReader = new System.IO.StringReader(objectAsString))
                 {
-                    Person dPerson = (Person)xmlSerializer.Deserialize(stringReader);
-                    //Console.WriteLine("\nName: {0}\nAge: {1}\nGame:{2}\nNo.Of Matches{3}\nAvg:{4}",dPerson.FirstName+" "+dPerson.LastName,dPerson.Age,dPerson.ODI.Type,dPerson.ODI.NumberOfMatches,dPerson.ODI.Avg);
+                    Order dOrder = (Order)xmlSerializer.Deserialize(stringReader);
                 }
+            }
+            catch (Exception Ex) { Console.WriteLine(Ex); }
         }
+
     }
 }

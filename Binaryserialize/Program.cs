@@ -38,8 +38,13 @@ namespace Binaryserialize
         static void Main(string[] args)
         {
             doSerialize();
-
+            doSecureSerialize();
             Console.ReadKey();
+
+            /*Security & Serialization
+             * https://msdn.microsoft.com/en-us/library/ek7af9ck(v=vs.110).aspx
+             * https://msdn.microsoft.com/en-us/library/system.security.permissions.securitypermission(v=vs.110).aspx
+             */
         }
         static void doSerialize()
         {
@@ -92,9 +97,57 @@ namespace Binaryserialize
             catch (System.Exception Ex) { Console.WriteLine(Ex); }
         }
 
+        static void doSecureSerialize()
+        {
+            try
+            {
+                PersonComplex personComplex = new PersonComplex() {Id=89,Name="arron"};
+                System.Runtime.Serialization.IFormatter ifomatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                using (var mStream = new System.IO.MemoryStream())
+                {
+                    ifomatter.Serialize(mStream, personComplex);
+
+                    mStream.Seek(0, System.IO.SeekOrigin.Begin);
+                    PersonComplex deComplex = (PersonComplex)ifomatter.Deserialize(mStream);
+                }
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex);
+            }
+             
+        }
+
         static Person getPerson()
         {
             return new Person {Id=1,Name="John Doe" };
+        }
+
+    }
+
+    [Serializable]
+    public class PersonComplex : System.Runtime.Serialization.ISerializable
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        [NonSerialized]
+        private bool isDirty = true;
+
+        public PersonComplex() { }
+
+        protected PersonComplex(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext sContext)
+        {
+            info.GetInt32("Value1");
+            info.GetString("Value2");
+            info.GetBoolean("Value3");
+        }
+
+        [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.,SerializationFormatter=true)]
+        public void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext sContext)
+        {
+            info.AddValue("Value1", Id); 
+            info.AddValue("Value2", Name); 
+            info.AddValue("Value3", isDirty);
         }
     }
 }

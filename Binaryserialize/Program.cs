@@ -42,6 +42,7 @@ namespace Binaryserialize
             Console.ReadKey();
 
             /*Security & Serialization
+             * https://msdn.microsoft.com/en-us/library/system.runtime.serialization.iserializable(v=vs.110).aspx
              * https://msdn.microsoft.com/en-us/library/ek7af9ck(v=vs.110).aspx
              * https://msdn.microsoft.com/en-us/library/system.security.permissions.securitypermission(v=vs.110).aspx
              */
@@ -109,6 +110,8 @@ namespace Binaryserialize
 
                     mStream.Seek(0, System.IO.SeekOrigin.Begin);
                     PersonComplex deComplex = (PersonComplex)ifomatter.Deserialize(mStream);
+                    Console.WriteLine("\nAfter deSerialization");
+                    Console.WriteLine("Id:{0}\nName:{1}",deComplex.Id, deComplex.Name);
                 }
             }
             catch (Exception Ex)
@@ -138,11 +141,11 @@ namespace Binaryserialize
         protected PersonComplex(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext sContext)
         {
             info.GetInt32("Value1");
-            info.GetString("Value2");
+            info.GetString("Value2"); //info.GetValue("Value2", typeof(string));
             info.GetBoolean("Value3");
         }
 
-        [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.,SerializationFormatter=true)]
+        [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Assert,SerializationFormatter=true)]
         public void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext sContext)
         {
             info.AddValue("Value1", Id); 

@@ -84,6 +84,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xmlserialize", "Serialize\X
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Binaryserialize", "Binaryserialize\Binaryserialize.csproj", "{45EB03EC-EF61-4A28-B424-EBFFF494A837}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataContractSerialize", "DataContractSerialize\DataContractSerialize.csproj", "{097E6E95-9E20-41CD-AB61-3F6A24EE35ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -194,6 +196,10 @@ Global
 		{45EB03EC-EF61-4A28-B424-EBFFF494A837}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45EB03EC-EF61-4A28-B424-EBFFF494A837}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45EB03EC-EF61-4A28-B424-EBFFF494A837}.Release|Any CPU.Build.0 = Release|Any CPU
+		{097E6E95-9E20-41CD-AB61-3F6A24EE35ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{097E6E95-9E20-41CD-AB61-3F6A24EE35ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{097E6E95-9E20-41CD-AB61-3F6A24EE35ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{097E6E95-9E20-41CD-AB61-3F6A24EE35ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -231,5 +237,6 @@ Global
 		{6BD933E4-114E-41D0-9508-1A7AC50B8501} = {0B626446-758D-4AC1-B0C6-02D9E4A49958}
 		{502650C8-3DE9-4C4C-81B7-D61244B2F59C} = {825590F4-A01B-4D3A-B39A-ECBCF6431C36}
 		{45EB03EC-EF61-4A28-B424-EBFFF494A837} = {825590F4-A01B-4D3A-B39A-ECBCF6431C36}
+		{097E6E95-9E20-41CD-AB61-3F6A24EE35ED} = {825590F4-A01B-4D3A-B39A-ECBCF6431C36}
 	EndGlobalSection
 EndGlobal

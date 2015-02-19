@@ -40,15 +40,21 @@ namespace JsonSerialize
                 string path = @"C:\Users\User\Documents\Visual Studio 2012\Projects\Exam70483\JsonSerialize\App_Code\Json.bin";
                 using (stream = new System.IO.MemoryStream())
                 {
+                    //Object -> Serialization
                     dCJsonSerialize.WriteObject(stream, persons);
                     stream.Position = 0;
+
+                    //Print Serialized Json
                     System.IO.StreamReader sReader = new System.IO.StreamReader(stream);
                     Console.WriteLine(sReader.ReadToEnd());
+
+                    //De-Serialization
                     stream.Position = 0;
                     var dperson = (List<Person>)dCJsonSerialize.ReadObject(stream);
-
                     Console.WriteLine("First item Name:{0}\nId:{1}", dperson.FirstOrDefault().Name,dperson.FirstOrDefault().Id);
 
+                    //Memory to File
+                    /*http://stackoverflow.com/questions/8624071/save-and-load-memorystream-to-from-a-file */
                     System.IO.FileStream fstream = new System.IO.FileStream(path,System.IO.FileMode.OpenOrCreate);
                     byte[] bytes = new byte[stream.Length];
                     stream.Read(bytes, 0, (int)stream.Length);

@@ -7,12 +7,12 @@ using Extention;
 using CustomLinqExtention;
 namespace Features
 {
+
     public class Person
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
     }
-
     public class Product
     {
         public string Description { get; set; }
@@ -290,8 +290,7 @@ namespace Features
                                       productPrice = groupedResult.Sum(x => x.Product.Price)
                                   };
 
-            // projectedResult.All(x => x.productPrice > 0);
-
+            //projectedResult.All(x => x.productPrice > 0);
             projectedResult.ToList().ForEach(x => Console.WriteLine("{0}:{1}", x.ProductKey, x.productPrice));
 
         }
@@ -420,7 +419,5 @@ namespace Extention
             }
             return new List<int>();
         }
-
-
     }
 }

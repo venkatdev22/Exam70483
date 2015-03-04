@@ -20,13 +20,18 @@ namespace Certificates
         /// </summary>
         public static void SignAndVerify()
         {
-            string TextToSign = "";
+            string TextToSign = "Test paragraph";
             byte[] Signature = Sign(TextToSign, "cn=WouterDeKort");
             Console.WriteLine(Verify(TextToSign, Signature));
 
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="certSubject"></param>
+        /// <returns>rgbSignature</returns>
         static byte[] Sign(string text, string certSubject)
         {
             System.Security.Cryptography.X509Certificates.X509Certificate2 cert = GetCertificate();
@@ -39,7 +44,9 @@ namespace Certificates
         {
             var my = new System.Security.Cryptography.X509Certificates.X509Store("testCertStore",
                 System.Security.Cryptography.X509Certificates.StoreLocation.CurrentUser);
+
             my.Open(System.Security.Cryptography.X509Certificates.OpenFlags.ReadOnly);
+
             var certificate = my.Certificates[0];
             return certificate;
         }

@@ -22,6 +22,8 @@ namespace SymmetricEncryption
                 Console.WriteLine("Original:   {0}", original);
                 Console.WriteLine("Round Trip: {0}", roundtrip);
             }
+
+            simpleProductData();
             Console.ReadKey();
         }
 
@@ -67,6 +69,16 @@ namespace SymmetricEncryption
             catch (Exception Ex) { Console.WriteLine(Ex); }
 
             return value;
+        }
+
+
+        static void simpleProductData()
+        {
+            Console.WriteLine("\nstatic class ProtectedData\n");
+            byte[] data=System.Text.Encoding.Default.GetBytes("Sample data");
+            byte[] encryptedData= System.Security.Cryptography.ProtectedData.Protect(data, null, System.Security.Cryptography.DataProtectionScope.CurrentUser);
+            Console.WriteLine(System.Text.Encoding.Default.GetString(encryptedData));
+            Console.WriteLine(System.Text.Encoding.Default.GetString(System.Security.Cryptography.ProtectedData.Unprotect(encryptedData,null,System.Security.Cryptography.DataProtectionScope.CurrentUser)));
         }
     }
 }
